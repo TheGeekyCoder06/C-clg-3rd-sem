@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile Active C/C++ File",
+      "type": "shell",
+      "command": "zsh",
+      "args": [
+        "-c",
+        "if [[ \"${fileExtname}\" == \".c\" ]]; then /opt/homebrew/bin/gcc-14 -std=c17 -Wall -Wextra -O2 \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\"; else /opt/homebrew/bin/g++-14 -std=c++17 -Wall -Wextra -O2 \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\"; fi"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Build and Run Active C/C++ File",
+      "type": "shell",
+      "dependsOn": "Compile Active C/C++ File",
+      "command": "zsh",
+      "args": [
+        "-c",
+        "clear && if [ -f input.txt ]; then ./${fileBasenameNoExtension} < input.txt | tee output.txt; else ./${fileBasenameNoExtension} | tee output.txt; fi"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
