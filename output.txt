@@ -1,1 +1,6 @@
-1 -> 3 -> NULL
+NULL <-> 5 <-> 10 <-> 15 <-> 20 <-> NULL
+NULL <-> 10 <-> 15 <-> 20 <-> NULL
+NULL <-> 10 <-> 15 <-> NULL
+NULL <-> 10 <-> NULL
+Search 10: Found
+Search 50: Not Found
